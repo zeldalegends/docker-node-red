@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir ./nodered/data
 sudo chown -R 1000:1000 .
 
 #docker build -t node-red .
