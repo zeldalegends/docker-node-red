@@ -1,0 +1,69 @@
+version: "3"
+
+services:
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    networks:
+      - localnet
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto:/mosquitto/data
+    restart: on-failure
+
+  telegraf:
+    container_name: telegraf
+    image: telegraf
+#    environment:
+#       - interval=60s
+#       - flush_interval=60s
+    volumes:
+      - ./telegraf:/etc/telegraf:ro
+    restart: on-failure
+
+  nodered:
+    container_name: nodered
+    build: ./nodered
+    networks:
+      - localnet
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered:/data 
+    restart: on-failure
+
+  influxdb:
+    container_name: influxdb
+    image: "influxdb"
+    networks:
+      - localnet
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb:/var/lib/influxdb 
+    restart: on-failure
+
+  grafana:
+    container_name: grafana
+    image: "grafana/grafana"
+    networks:
+      - localnet
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+#    environment:
+#      - GF_INSTALL_PLUGINS=grafana-clock-panel,natel-discrete-panel,briangann-gauge-panel,vonage-status-panel,neocat-cal-heatmap-panel
+    restart: on-failure
+
+volumes:
+  telegraf:
+  nodered:
+  influxdb:
+  grafana:
+  mosquitto:
+
+networks:
+  localnet:
