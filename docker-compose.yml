@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
 
@@ -36,7 +36,7 @@ services:
 
   influxdb:
     container_name: influxdb
-    image: "influxdb"
+    image: influxdb
     networks:
       - localnet
     ports:
@@ -47,23 +47,23 @@ services:
 
   grafana:
     container_name: grafana
-    image: "grafana/grafana"
+    image: grafana/grafana
     networks:
       - localnet
     ports:
       - "3000:3000"
-    volumes:
-      - ./grafana:/var/lib/grafana
+#    volumes:
+#      - ./grafana:/var/lib/grafana
 #    environment:
 #      - GF_INSTALL_PLUGINS=grafana-clock-panel,natel-discrete-panel,briangann-gauge-panel,vonage-status-panel,neocat-cal-heatmap-panel
     restart: on-failure
 
-volumes:
-  telegraf:
-  nodered:
-  influxdb:
-  grafana:
-  mosquitto:
+# volumes:
+#  telegraf:
+#  nodered:
+#  influxdb:
+#  grafana:
+#  mosquitto:
 
 networks:
   localnet:
