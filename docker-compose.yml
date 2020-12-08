@@ -9,8 +9,8 @@ services:
       - localnet
     ports:
       - "1883:1883"
-    volumes:
-      - ./mosquitto:/mosquitto/data
+#    volumes:
+#      - ./mosquitto:/mosquitto/data
     restart: on-failure
 
   telegraf:
@@ -30,9 +30,8 @@ services:
       - localnet
     ports:
       - "1880:1880"
-    user: "1000"
     volumes:
-      - ./nodered:/data 
+      - ./nodered/data:/data 
     restart: on-failure
 
   influxdb:
@@ -53,7 +52,6 @@ services:
       - localnet
     ports:
       - "3000:3000"
-    user: "104"
     volumes:
       - ./grafana:/var/lib/grafana
 #    environment:
