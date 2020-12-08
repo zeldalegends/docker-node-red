@@ -30,6 +30,7 @@ services:
       - localnet
     ports:
       - "1880:1880"
+    user: 1000
     volumes:
       - ./nodered:/data 
     restart: on-failure
@@ -52,6 +53,7 @@ services:
       - localnet
     ports:
       - "3000:3000"
+    user: 104
     volumes:
       - ./grafana:/var/lib/grafana
 #    environment:
