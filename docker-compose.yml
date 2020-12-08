@@ -10,7 +10,7 @@ services:
     ports:
       - "1883:1883"
 #    volumes:
-#      - ./mosquitto:/mosquitto/data
+#      - ./mosquitto:/mosquitto
     restart: on-failure
 
   telegraf:
@@ -52,10 +52,6 @@ services:
       - localnet
     ports:
       - "3000:3000"
-#    volumes:
-#      - ./grafana:/var/lib/grafana
-#    environment:
-#      - GF_INSTALL_PLUGINS=grafana-clock-panel,natel-discrete-panel,briangann-gauge-panel,vonage-status-panel,neocat-cal-heatmap-panel
     restart: on-failure
 
 # volumes:
