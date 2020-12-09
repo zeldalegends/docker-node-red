@@ -9,8 +9,22 @@ services:
       - localnet
     ports:
       - "1883:1883"
+# To use WebSockets and/or persistence: change mosquitto.conf under ./mosquitto/config/ (https://hub.docker.com/_/eclipse-mosquitto)
+#    ports:
+#      - "9001:9001"
 #    volumes:
 #      - ./mosquitto:/mosquitto
+    restart: on-failure
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb
+    networks:
+      - localnet
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb:/var/lib/influxdb 
     restart: on-failure
 
   telegraf:
@@ -25,6 +39,7 @@ services:
 
   nodered:
     container_name: nodered
+# see nodered/Dockerfile
     build: ./nodered
     networks:
       - localnet
@@ -32,17 +47,6 @@ services:
       - "1880:1880"
     volumes:
       - ./nodered/data:/data 
-    restart: on-failure
-
-  influxdb:
-    container_name: influxdb
-    image: influxdb
-    networks:
-      - localnet
-    ports:
-      - "8086:8086"
-    volumes:
-      - ./influxdb:/var/lib/influxdb 
     restart: on-failure
 
   grafana:
@@ -55,11 +59,11 @@ services:
     restart: on-failure
 
 # volumes:
+#  mosquitto:
+#  influxdb:
 #  telegraf:
 #  nodered:
-#  influxdb:
 #  grafana:
-#  mosquitto:
 
 networks:
   localnet:
