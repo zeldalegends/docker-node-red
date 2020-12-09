@@ -1,5 +1,5 @@
 FROM nodered/node-red:latest-12
-USER node-red
+
 # Copy package.json to the WORKDIR so npm builds all
 # of your added nodes modules for Node-RED
 # COPY package.json .
@@ -16,10 +16,10 @@ USER node-red
 # You should add extra nodes via your package.json file but you can also add them here:
 # WORKDIR /usr/src/node-red
 RUN npm install node-red-dashboard
-#RUN npm install node-red-contrib-modbus
-#RUN npm install node-red-contrib-opcua
-#RUN npm install node-red-contrib-influxdb
-#RUN npm install node-red-contrib-mongodb
+RUN npm install node-red-contrib-modbus
+RUN npm install node-red-contrib-opcua
+RUN npm install node-red-contrib-influxdb
+RUN npm install node-red-contrib-mongodb
 
 #RUN npm install node-red-contrib-aedes
 #RUN npm install node-red-contrib-string
