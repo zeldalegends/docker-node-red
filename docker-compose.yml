@@ -14,7 +14,7 @@ services:
 #      - "9001:9001"
 #    volumes:
 #      - ./mosquitto:/mosquitto
-    restart: on-failure
+    restart: always # on-failure
 
   influxdb:
     container_name: influxdb
@@ -25,7 +25,7 @@ services:
       - "8086:8086"
     volumes:
       - ./influxdb:/var/lib/influxdb 
-    restart: on-failure
+    restart: always
 
   telegraf:
     container_name: telegraf
@@ -35,8 +35,34 @@ services:
 #       - flush_interval=60s
     volumes:
       - ./telegraf:/etc/telegraf:ro
-    restart: on-failure
+    restart: always
 
+  mongo:
+    container_name: mongo
+    image: mongo
+    networks:
+      - localnet
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./mongo/db:/data/db
+    restart: always
+ 
+   mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    networks:
+      - localnet
+    ports:
+      - "8081:8081"
+    links:
+        - mongo      
+#    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    restart: always
+      
   nodered:
     container_name: nodered
 # see nodered/Dockerfile
@@ -47,7 +73,7 @@ services:
       - "1880:1880"
     volumes:
       - ./nodered/data:/data 
-    restart: on-failure
+    restart: always
 
   grafana:
     container_name: grafana
@@ -56,7 +82,7 @@ services:
       - localnet
     ports:
       - "3000:3000"
-    restart: on-failure
+    restart: always
 
 # volumes:
 #  mosquitto:
