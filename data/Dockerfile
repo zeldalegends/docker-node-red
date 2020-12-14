@@ -18,9 +18,8 @@ RUN npm install node-red-contrib-mongodb
 
 # RUN npm install node-red-contrib-aedes
 RUN npm install node-red-node-dropbox
-RUN npm install node-red-node-ui-table
-RUN npm install node-red-contrib-ui-scheduler 
+# RUN npm install node-red-node-ui-table
 RUN npm install node-red-contrib-ui-time-scheduler
-RUN npm install node-red-contrib-chronos
-RUN npm install node-red-contrib-cron-plus
-RUN npm install node-red-contrib-string
+# RUN npm install node-red-contrib-chronos
+# RUN npm install node-red-contrib-cron-plus
+# RUN npm install node-red-contrib-string
