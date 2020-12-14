@@ -95,3 +95,4 @@ services:
 
 networks:
   localnet:
+    name: zelda
