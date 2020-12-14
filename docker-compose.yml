@@ -33,8 +33,8 @@ services:
     networks:
       - localnet
 #    environment:
-#       - interval=60s
-#       - flush_interval=60s
+#      - interval=60s
+#      - flush_interval=60s
     volumes:
       - ./telegraf:/etc/telegraf #:ro
     restart: always
@@ -59,7 +59,7 @@ services:
     ports:
       - 8081:8081
 #    links:
-#        - mongo      
+#      - mongo      
 #    environment:
 #      ME_CONFIG_MONGODB_ADMINUSERNAME: root
 #      ME_CONFIG_MONGODB_ADMINPASSWORD: example
@@ -67,15 +67,15 @@ services:
       
   nodered:
     container_name: nodered
-# see nodered/Dockerfile
-#    build: ./nodered
+# see Dockerfile
+#    build: ./data
     image: nodered/node-red
     networks:
       - localnet
     ports:
       - 1880:1880
     volumes:
-      - .:/data 
+      - ./data:/data 
     restart: always
 
   grafana:
@@ -88,11 +88,11 @@ services:
     restart: always
 
 # volumes:
-#  mosquitto:
-#  influxdb:
-#  telegraf:
-#  nodered:
+#   mosquitto:
+#   influxdb:
+#   telegraf:
+#   nodered:
 
 networks:
   localnet:
-    name: zelda
+#    name: zelda
