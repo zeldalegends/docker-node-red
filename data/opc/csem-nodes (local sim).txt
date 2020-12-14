@@ -1,0 +1,11 @@
+ns=1;s=::AsGlobalPV:gU1.power;datatype=Float
+ns=1;s=::AsGlobalPV:gBMS1.socPercent;datatype=Float
+ns=1;s=::AsGlobalPV:gMD1.powerBat;datatype=Float
+ns=1;s=::AsGlobalPV:gMD1.powerPV;datatype=Float
+ns=1;s=::AsGlobalPV:gMD1.powerHP;datatype=Float
+ns=1;s=::AsGlobalPV:gU1.outputStatus;datatype=Boolean
+ns=1;s=::AsGlobalPV:gController.pvConnected;datatype=Boolean
+ns=1;s=::AsGlobalPV:gController.E_1;datatype=Float
+ns=1;s=::AsGlobalPV:gController.E_2;datatype=Float
+ns=1;s=::AsGlobalPV:gController.powerCMax;datatype=Float
+ns=1;s=::AsGlobalPV:gController.powerDMax;datatype=Float
