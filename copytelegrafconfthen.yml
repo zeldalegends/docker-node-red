@@ -55,5 +55,6 @@ volumes:
   mosquitto:
   influxdb:
   telegraf:
+  mongo:
   nodered:
   grafana:
