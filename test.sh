@@ -2,13 +2,14 @@
 
 # Modbus TCP/IP and OPC UA sim server
 docker run --rm -d -p 4840:4840 --name opcua-server-demo -v ~/opcua-certs:/certificates bodiroga/opcua-server-demo
-docker run --rm -d -p 502:502 oitc/modbus-server
+docker run --rm -d -p 5020:5020 oitc/modbus-server:latest
+# docker run -it --rm oitc/modbus-client:latest -s 127.0.0.1 -p 5020 -t 4 -r 0 -l 10
 
 mkdir ./nodered/data
 sudo chown -R 1000:1000 .
 
 #docker build -t node-red .
-docker-compose up
+docker-compose -f node-red.yml up
 
 echo "Grafana: http://127.0.0.1:3000 - admin/admin"
 
