@@ -12,5 +12,5 @@ FROM nodered/node-red:latest-12
 # WORKDIR /usr/src/node-red
 RUN npm install node-red-dashboard
 # RUN npm install node-red-node-mongodb
-# RUN npm install node-red-contrib-modbus
+RUN npm install node-red-contrib-modbus
 RUN npm install node-red-contrib-opcua
