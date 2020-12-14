@@ -68,8 +68,8 @@ services:
   nodered:
     container_name: nodered
 # see Dockerfile
-#    build: ./data
-    image: nodered/node-red
+    build: ./data
+#    image: nodered/node-red
     networks:
       - localnet
     ports:
