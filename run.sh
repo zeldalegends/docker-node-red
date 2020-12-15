@@ -9,7 +9,8 @@ mkdir ./nodered/data
 sudo chown -R 1000:1000 .
 
 #docker build -t node-red .
-docker-compose -f nodered.yml up
+#docker-compose -f complete.yml up
+docker-compose up
 
 echo "Grafana: http://127.0.0.1:3000 - admin/admin"
 
