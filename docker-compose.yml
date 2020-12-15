@@ -1,0 +1,90 @@
+version: "3.8"
+
+services:
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+    volumes:
+      - ./mosquitto:/mosquitto
+    networks:
+      - localnet
+    restart: always
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb
+#   ports:
+#     - 8086:8086
+    volumes:
+      - ./influxdb:/var/lib/influxdb 
+    networks:
+      - localnet
+    restart: always
+
+  telegraf:
+    container_name: telegraf
+    image: telegraf
+#   environment:
+#     - interval=60s
+#     - flush_interval=60s
+    volumes:
+      - ./telegraf:/etc/telegraf #:ro
+    networks:
+      - localnet
+    restart: always
+
+  mongo:
+    container_name: mongo
+    image: mongo
+#   environment:
+#     MONGO_INITDB_ROOT_USERNAME: root
+#     MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./mongo/db:/data/db
+    networks:
+      - localnet
+    restart: always
+
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    ports:
+      - 8081:8081
+#   environment:
+#     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#     ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    networks:
+      - localnet
+    restart: always
+      
+  nodered:
+    container_name: nodered
+    build: data/.
+    ports:
+      - 1880:1880
+    volumes:
+      - ./data:/data 
+    networks:
+      - localnet
+    restart: always
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    networks:
+      - localnet
+    restart: always
+
+# volumes:
+#   mosquitto:
+#   influxdb:
+#   telegraf:
+#   nodered:
+
+networks:
+  localnet:
+#   name: zelda
