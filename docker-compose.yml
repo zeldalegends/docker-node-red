@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  influxdb:
+    image: influxdb
+    ports:
+      - 8086:8086
+    volumes:
+      - influxdb:/var/lib/influxdb 
+    networks:
+      - localnet
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    networks:
+      - localnet
+    restart: always
+
+  telegraf:
+    image: telegraf
+    volumes:
+      - telegraf:/etc/telegraf #:ro
+    networks:
+      - localnet
+    restart: always
+
+  nodered:
+#   image: nodered/node-red
+    build: .
+    ports:
+      - 1880:1880
+    volumes:
+      - nodered:/data 
+    networks:
+      - localnet
+    restart: always
+
+  volumes:
+    influxdb:
+    telegraf:
+    nodered:
+
+networks:
+  localnet:
