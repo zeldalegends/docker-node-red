@@ -6,8 +6,11 @@ services:
     image: eclipse-mosquitto
     ports:
       - 1883:1883
-    volumes:
-      - ./mosquitto:/mosquitto
+# To use WebSockets and/or persistence: change mosquitto.conf under ./mosquitto/config/ (https://hub.docker.com/_/eclipse-mosquitto)
+#   ports:
+#     - 9001:9001
+#   volumes:
+#     - ./mosquitto:/mosquitto
     networks:
       - localnet
     restart: always
@@ -61,7 +64,7 @@ services:
       
   nodered:
     container_name: nodered
-    build: data/.
+    build: ./data
     ports:
       - 1880:1880
     volumes:
