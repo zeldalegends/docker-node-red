@@ -1,4 +1,4 @@
-FROM nodered/node-red:latest-12
+FROM nodered/node-red:latest
 
 # Copy _your_ Node-RED project files into place
 # NOTE: This will only work if you DO NOT later mount /data as an external volume.
